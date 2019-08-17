@@ -72,10 +72,55 @@ namespace ejm
                        }
                     break;
                 case 2:
-                    byte NumPer;
+                    byte NumPer = 0;
+                    byte incre = 0;
                     Console.WriteLine("cuantas personas van a jugar?");
                     NumPer = Convert.ToByte(Console.ReadLine());
-                     
+                    if (NumPer <= 1)
+                    {
+                        Console.WriteLine("Por favor reincie y escoja un jugador");
+                    }
+                    else
+                    {
+                        int[] juego = new int[10];
+                        string[] Nombres = new string[NumPer];
+                        byte mostarJ;
+
+                        for (int i = 0; i < Nombres.Length; i++)
+                        {
+                            int j = i;
+                            Console.WriteLine("Nombres : " + (++j));
+                            Nombres[i] = Console.ReadLine();
+                        }
+                        do
+                        {
+                            Random azar = new Random();
+                            int Randon = azar.Next(0,100);
+                            Console.WriteLine(Randon);
+                            for (int i = 0; i < juego.Length; i++)
+                            {
+                                Console.WriteLine("Ingrese un numero entre 1-100  " );
+                                juego[i] = Convert.ToInt32(Console.ReadLine());
+                                if (Randon > juego[i]) Console.WriteLine("muy bajo");
+                                else if (Randon < juego[i]) Console.WriteLine("muy alto");
+                                else if (Randon == juego[i])
+                                {
+                                    Console.WriteLine("Ganastes");
+                                    break;
+                                }
+                            }
+                            mostarJ = incre;
+                            incre++;
+
+
+                        } while (incre != NumPer);
+                        Console.WriteLine("Los Jugadores fueron : "+ ++mostarJ);
+                        for (int i = 0; i < NumPer; i++)
+                        {   
+                            if (i == NumPer-1)Console.WriteLine(Nombres[i] );
+                            else Console.Write(Nombres[i] + " - ");
+                        }
+                    }
                     break;
                 default:
 
