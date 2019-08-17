@@ -82,7 +82,7 @@ namespace ejm
                     }
                     else
                     {
-                        int[] juego = new int[10];
+                        int[,] juego = new int[10,NumPer];
                         string[] Nombres = new string[NumPer];
                         byte mostarJ;
 
@@ -97,17 +97,27 @@ namespace ejm
                             Random azar = new Random();
                             int Randon = azar.Next(0,100);
                             Console.WriteLine(Randon);
-                            for (int i = 0; i < juego.Length; i++)
+                            for (int i = 0; i < juego.LongLength; i++)
                             {
-                                Console.WriteLine("Ingrese un numero entre 1-100  " );
-                                juego[i] = Convert.ToInt32(Console.ReadLine());
-                                if (Randon > juego[i]) Console.WriteLine("muy bajo");
-                                else if (Randon < juego[i]) Console.WriteLine("muy alto");
-                                else if (Randon == juego[i])
+
+                                for (int k = 0; k < juego.LongLength; k++)
                                 {
-                                    Console.WriteLine("Ganastes");
-                                    break;
+                                    Console.WriteLine("Ingrese un numero entre 1-100  ");
+                                    juego[i,k] = Convert.ToInt32(Console.ReadLine());
+                                    if (Randon > juego[i, k]) Console.WriteLine("muy bajo");
+                                    else if (Randon < juego[i, k]) Console.WriteLine("muy alto");
+                                    else if (Randon == juego[i, k])
+                                    {
+                                        for (int j = i + 1; j < juego.Length; j++)
+                                        {
+                                            juego[i, k] = 0;
+                                        }
+                                        Console.WriteLine("Ganastes");
+                                        break;   
+                                    }
                                 }
+                             
+                               
                             }
                             mostarJ = incre;
                             incre++;
